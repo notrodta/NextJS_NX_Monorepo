@@ -7,12 +7,11 @@ import { ErrorBoundary } from "react-error-boundary";
 
 JL.setOptions({
   "defaultAjaxUrl": "http://localhost:3333/logger",
-  requestId: "requestID_1!!",
 });
 
-const data: any = { sid: 'D12345', appVersion: '1' }
+const logOptions: any = { appName: 'Market', sid: 'D123456', appVersion: '1' }
 
-var logger = JL("LoggerName@@@@ - " + JSON.stringify(data));
+var logger = JL(JSON.stringify(logOptions));
 
 function ErrorFallback({ error, resetErrorBoundary }) {
   // Call resetErrorBoundary() to reset the error boundary and retry the render.
@@ -38,8 +37,10 @@ export function Index({ q, pokemon: initialPokemon }: { q: string; pokemon: Poke
     // JL('client INFO!!').error(info);
     // JL('client FATAL!!').fatalException("Exception was thrown!", info);
     // JL('client end!!').info("end!!!!!!!@@#");
+    // logger.fatalException("Exception was thrown!", info);
+    // logger.info("end!!!!!!!@@#");
     logger.fatalException("Exception was thrown!", info);
-    logger.info("end!!!!!!!@@#");
+    logger.info("This is logging test!");
   };
 
   const handleOnClick = () => {
